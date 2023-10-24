@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="my-3 pb-5">
+    <div class="container-fluid">
+        <h1>Weather API</h1>
+        <p class="lead">Please write a location to see the current weather location</p>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control mx-1" placeholder="Location" aria-label="Location" aria-describedby="location-btn">
+                <button class="btn btn-primary mx-1" type="button" id="location-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

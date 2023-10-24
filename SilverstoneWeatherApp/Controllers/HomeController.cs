@@ -10,6 +10,7 @@ namespace SilverstoneWeatherApp.Controllers
     {
         public ActionResult Index()
         {
+            // testing
             return View();
         }
 
