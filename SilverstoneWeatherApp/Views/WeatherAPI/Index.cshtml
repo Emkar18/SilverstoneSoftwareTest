@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="my-3 pb-5">
+    <div class="container-fluid">
+        <h1>Weather API</h1>
+        <p class="lead">Please write a location to see the current weather location</p>
+    </div>
+
+    @using (Html.BeginForm("WeatherInfo", "WeatherAPI", FormMethod.Post))
+    {
+        <div class="row d-flex justify-content-center">
+            <input type="text" placeholder="Location" name="Name" id="NameInput">
+            <input type="submit" value="Add" class="btn btn-primary my-2"> <br> <br>
+        </div>
+    }
+</div>
