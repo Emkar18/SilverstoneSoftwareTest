@@ -6,13 +6,18 @@
     <div class="container-fluid">
         <h1>Weather API</h1>
         <p class="lead">Please write a location to see the current weather location</p>
-    </div>
 
-    @using (Html.BeginForm("WeatherInfo", "WeatherAPI", FormMethod.Post))
-    {
-        <div class="row d-flex justify-content-center">
-            <input type="text" placeholder="Location" name="Name" id="NameInput">
-            <input type="submit" value="Add" class="btn btn-primary my-2"> <br> <br>
-        </div>
-    }
+        @using (Html.BeginForm("WeatherInfo", "WeatherAPI", FormMethod.Post))
+        {
+            <div class="row justify-content-md-center my-3">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="Location" name="Name" id="NameInput" required>
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" value="Confirm" class="btn btn-primary btn-block">
+                </div>
+        
+            </div>
+        }
+    </div>
 </div>

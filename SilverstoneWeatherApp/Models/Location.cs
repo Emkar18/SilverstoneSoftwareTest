@@ -8,5 +8,7 @@ namespace SilverstoneWeatherApp.Models
     public class Location
     {
         public string Name { get; set; }
+
+        public Weather Weather { get; set; }
     }
 }

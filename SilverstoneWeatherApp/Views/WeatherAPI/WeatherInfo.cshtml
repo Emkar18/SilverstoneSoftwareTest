@@ -5,4 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>@Model.Name</p>
+<div class="container-fluid my-md-5">
+    <h1>Weather Information on: @Model.Name</h1>
+
+    <h3>Temperature</h3>
+    <p>Current:  @Model.Weather.TempInfo.Temp</p>
+    <p>Min:  @Model.Weather.TempInfo.Temp_min</p>
+    <p>Max:  @Model.Weather.TempInfo.Temp_max</p>
+    <h3>Humidity</h3>
+    <p>Current:  @Model.Weather.TempInfo.Humidity</p>
+    <h3>Daylight:</h3>
+    <p>Sunrise:  @Model.Weather.DayLightInfo.Sunrise</p>
+    <p>Sunset:  @Model.Weather.DayLightInfo.Sunset</p>
+
+    @using (Html.BeginForm("Index", "WeatherAPI", FormMethod.Post))
+    {
+        <input type="submit" value="Change Location" class="btn btn-primary my-2"> <br> <br>
+    }
+</div>
+
