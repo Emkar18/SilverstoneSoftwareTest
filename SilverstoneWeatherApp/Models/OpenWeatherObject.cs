@@ -5,25 +5,22 @@ using System.Web;
 
 namespace SilverstoneWeatherApp.Models
 {
-    public class Weather
+    public class OpenWeatherObject
     {
-
-        public Temperature TempInfo { get; set; }
-        public DayLight DayLightInfo { get; set; }
-
+        public Main Main { get; set; }
+        public Sys Sys { get; set; }
+        public double Timezone { get; set; }
     }
-
-    public class Temperature
+    public class Main
     {
         public string Temp { get; set; }
         public string Temp_min { get; set; }
         public string Temp_max { get; set; }
-
         public string Humidity { get; set; }
     }
-
-    public class DayLight
+    public class Sys
     {
+        public string Country { get; set; }
         public string Sunrise { get; set; }
         public string Sunset { get; set; }
     }

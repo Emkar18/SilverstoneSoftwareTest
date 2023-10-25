@@ -5,19 +5,29 @@
 <div class="my-3 pb-5">
     <div class="container-fluid">
         <h1>Weather API</h1>
-        <p class="lead">Please write a location to see the current weather location</p>
+        <p class="lead">Please write a location to see the current weather location.</p>
 
         @using (Html.BeginForm("WeatherInfo", "WeatherAPI", FormMethod.Post))
         {
-            <div class="row justify-content-md-center my-3">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" placeholder="Location" name="Name" id="NameInput" required>
-                </div>
-                <div class="col-md-1">
-                    <input type="submit" value="Confirm" class="btn btn-primary btn-block">
-                </div>
-        
+            <div class="container-fluid mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-md">
+                                <input type="text" class="form-control" placeholder="Location" name="Name" id="NameInput" required>
+                                <div class="input-group-btn">
+                                    <input type="submit" value="Confirm" class="btn btn-primary btn-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
+            if (null != TempData["alertMessage"])
+            {
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="btn-close" data-dismiss="alert"></button>
+                    <strong>Sorry!</strong> The location is not a valid city, please try again.
+                </div>
+            }
         }
     </div>
 </div>
