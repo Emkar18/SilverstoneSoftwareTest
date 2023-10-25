@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SilverstoneWeatherApp.Models
 {
-    public class OpenWeatherObject
+    public class OpenWeatherObject : Weather
     {
         public Main Main { get; set; }
         public Sys Sys { get; set; }
