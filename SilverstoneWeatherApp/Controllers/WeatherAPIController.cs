@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 
 namespace SilverstoneWeatherApp.Controllers
 {
@@ -24,30 +25,59 @@ namespace SilverstoneWeatherApp.Controllers
         [HttpPost]
         public ActionResult WeatherInfo(Location location)
         {
+            string response = ApiRequest(location.Name);
+            if (response == "City not found")
+            {
+                TempData["alertMessage"] = "Whatever you want to alert the user with";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                location.Weather = ConvertJSON(response);
+
+                string[] input = location.Name.Split(',');
+                location.Name = input[0];
+
+                return View(location);
+            }
+        }
+
+        private string ApiRequest(string location)
+        {
             string appId = "9e061cb18c97d4b21e3e6107137b6307";
-            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&cnt=1&APPID={1}", location.Name, appId);
+            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&cnt=1&APPID={1}", location, appId);
 
             using (WebClient client = new WebClient())
             {
-                string Response = client.DownloadString(url);
-
-                JObject Json = JObject.Parse(Response);
-                JToken TempInfo = Json["main"];
-                JToken SunInfo = Json["sys"];
-
-                Temperature Temperature = TempInfo.ToObject<Temperature>();
-                DayLight DayLight = SunInfo.ToObject<DayLight>();
-
-                Weather Weather = new Weather
+                string response;
+                try
                 {
-                    TempInfo = Temperature,
-                    DayLightInfo = DayLight 
-                };
-
-                location.Weather = Weather;
+                    response = client.DownloadString(url);
+                }
+                catch (WebException)
+                {
+                    response = "City not found";
+                }
+                return response;
             }
+        }
 
-            return View(location);
+        private OpenWeatherObject ConvertJSON(string response)
+        {
+            //Converting to OBJECT from JSON string.  
+            OpenWeatherObject openWeather = (new JavaScriptSerializer()).Deserialize<OpenWeatherObject>(response);
+
+            openWeather.Sys.Sunrise = ConvertUnixTimestamp(openWeather.Sys.Sunrise, openWeather.Timezone);
+            openWeather.Sys.Sunset = ConvertUnixTimestamp(openWeather.Sys.Sunset, openWeather.Timezone);
+
+            return openWeather;
+        }
+
+        private static string ConvertUnixTimestamp(string unixTimestamp, double timezone)
+        {
+            DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            dateTime = dateTime.AddSeconds(Convert.ToDouble(unixTimestamp) + timezone);
+            return dateTime.ToString("HH:mm");
         }
     }
 }
