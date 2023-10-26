@@ -8,7 +8,6 @@ namespace SilverstoneWeatherApp.Models
     public class Search
     {
         public int SearchID { get; set; }
-
         public int LocationID { get; set; }
         public int WeatherID { get; set; }
 
