@@ -11,7 +11,5 @@ namespace SilverstoneWeatherApp.Models
         public string Name { get; set; }
         public OpenWeatherObject Weather { get; set; }
 
-        public virtual ICollection<Search> Searches { get; set; }
-
     }
 }
