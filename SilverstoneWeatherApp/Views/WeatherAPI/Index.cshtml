@@ -10,18 +10,31 @@
         @using (Html.BeginForm("WeatherInfo", "WeatherAPI", FormMethod.Post))
         {
             <div class="container-fluid mb-3">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <div class="input-group input-group-md">
-                                <input type="text" class="form-control" placeholder="Location" name="Name" id="NameInput" required>
-                                <div class="input-group-btn">
-                                    <input type="submit" value="Confirm" class="btn btn-primary btn-block">
-                                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-md">
+                            <input type="text" class="form-control" placeholder="Location" name="Name" id="NameInput" required>
+                            <div class="input-group-btn">
+                                <input type="submit" value="Confirm" class="btn btn-primary btn-block">
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-            if (null != TempData["alertMessage"])
+            if (TempData["alertMessage"] == "Search cleared")
+            {
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="btn-close" data-dismiss="alert"></button>
+                    Previous searched have been cleared.
+                </div>
+            }else if (TempData["alertMessage"] == "No searches")
+            {
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="btn-close" data-dismiss="alert"></button>
+                    <strong>Sorry!</strong> No searches have been made yet.
+                </div>
+            }
+            else if (TempData["alertMessage"] == "Invalid city")
             {
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="btn-close" data-dismiss="alert"></button>

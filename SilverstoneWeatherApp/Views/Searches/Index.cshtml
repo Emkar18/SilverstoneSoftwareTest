@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +7,42 @@
     <div class="container-fluid">
         <h1>Previous Searches</h1>
         <p class="lead">Below is a list of previous searches.</p>
+        <div class="container-fluid">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Location</th>
+                        <th scope="col">Searched on</th>
+                        <th scope="col">Temp</th>
+                        <th scope="col">Temp(min)</th>
+                        <th scope="col">Temp(max)</th>
+                        <th scope="col">Humidity</th>
+                        <th scope="col">Sunrise</th>
+                        <th scope="col">Sunset</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var location in (Session["SearchSession"] as SilverstoneWeatherApp.Models.SearchSession).Locations)
+                    {
+                        <tr>
+                            <th scope="row">@location.Name</th>
+                            <td>@location.Weather.Timestamp</td>
+                            <td>@location.Weather.Main.Temp &#8451;</td>
+                            <td>@location.Weather.Main.Temp_min &#8451;</td>
+                            <td>@location.Weather.Main.Temp_max &#8451;</td>
+                            <td>@location.Weather.Main.Humidity %</td>
+                            <td>@location.Weather.Sys.Sunrise</td>
+                            <td>@location.Weather.Sys.Sunset</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
+    @using (Html.BeginForm("ClearSearches", "Searches", FormMethod.Post))
+    {
+        <input type="submit" value="Clear searches" class="btn btn-primary my-2"> <br> <br>
+    }
 </div>
 
 

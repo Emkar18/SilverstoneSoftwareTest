@@ -7,6 +7,6 @@ namespace SilverstoneWeatherApp.Models
 {
     public abstract class Weather
     {
-        public int WeatherID { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }

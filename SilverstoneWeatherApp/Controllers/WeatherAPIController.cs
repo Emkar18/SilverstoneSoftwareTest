@@ -21,6 +21,11 @@ namespace SilverstoneWeatherApp.Controllers
         {
             return View();
         }
+        public ActionResult EmptySession()
+        {
+            TempData["AlertMessage"] = "No searches";
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public ActionResult WeatherInfo(Location location)
@@ -28,17 +33,32 @@ namespace SilverstoneWeatherApp.Controllers
             string response = ApiRequest(location.Name);
             if (response == "City not found")
             {
-                TempData["alertMessage"] = "Whatever you want to alert the user with";
+                TempData["alertMessage"] = "Invalid city";
                 return RedirectToAction("Index");
             }
             else
             {
                 location.Weather = ConvertJSON(response);
+                location.Weather.Timestamp = DateTime.Now;
 
                 string[] input = location.Name.Split(',');
                 location.Name = input[0];
+                SaveToSession(location);
 
                 return View(location);
+            }
+        }
+
+        private void SaveToSession(Location location)
+        {
+            if (SearchSessionExtensions.GetSearchSession(Session) != null)
+            {
+                SearchSessionExtensions.AddToSearchSession(Session, location);
+            } else
+            {
+                SearchSession search = new SearchSession();
+                search.Locations.Add(location);
+                SearchSessionExtensions.SetSearchSession(Session, search);
             }
         }
 
