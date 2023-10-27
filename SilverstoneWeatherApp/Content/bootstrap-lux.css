@@ -2116,6 +2116,7 @@ progress {
 .form-control {
   display: block;
   width: 100%;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5;
@@ -3325,6 +3326,10 @@ textarea.form-control-lg {
 }
 .fade:not(.show) {
   opacity: 0;
+}
+
+.collapse:not(.show) {
+  display: none;
 }
 
 .collapsing {
