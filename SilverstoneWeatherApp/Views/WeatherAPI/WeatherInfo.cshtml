@@ -1,5 +1,4 @@
 @model SilverstoneWeatherApp.Models.Location
-    
 @{
     ViewBag.Title = "WeatherInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +6,7 @@
 
 <div class="container-fluid my-md-5">
     <div class="container-fluid my-3">
-        <h1>Weather Information on: @Model.Name, @Model.Weather.Sys.Country</h1>
+        <h1>Weather Information on: @Model.Name.Split(',')[0], @Model.Weather.Sys.Country</h1>
     </div>
     <div class="container-fluid my-3">
         <h3 class="mb-1 mt-3">Temperature</h3>

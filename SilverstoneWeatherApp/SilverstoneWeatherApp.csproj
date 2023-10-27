@@ -126,6 +126,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper classes\OpenWeatherAPI.cs" />
+    <Compile Include="Helper classes\SearchSessionExtensions.cs" />
+    <Compile Include="Helper classes\UnitConverter.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\OpenWeatherObject.cs" />
     <Compile Include="Models\SearchSession.cs" />
@@ -134,7 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lux.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="favicon.ico" />
