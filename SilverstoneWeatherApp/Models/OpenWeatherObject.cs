@@ -8,11 +8,13 @@ using System.Web.Script.Serialization;
 
 namespace SilverstoneWeatherApp.Models
 {
-    public class OpenWeatherObject : Weather
+    public class OpenWeatherObject
     {
         public Main Main { get; set; }
         public Sys Sys { get; set; }
         public double Timezone { get; set; }
+        public DateTime Timestamp { get; set; }
+
     }
     public class Main
     {

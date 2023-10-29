@@ -18,7 +18,7 @@ namespace SilverstoneWeatherApp.Models
             Weather.Timestamp = DateTime.Now;
         }
 
-        public OpenWeatherObject CreateFromJSON(string json)
+        private OpenWeatherObject CreateFromJSON(string json)
         {
             OpenWeatherObject openWeather = (new JavaScriptSerializer()).Deserialize<OpenWeatherObject>(json);
             openWeather.Sys.Sunrise = UnitConverter.ConvertUnixTimestamp(openWeather.Sys.Sunrise, openWeather.Timezone);

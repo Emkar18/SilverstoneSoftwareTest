@@ -128,11 +128,11 @@
     </Compile>
     <Compile Include="Helper classes\OpenWeatherAPI.cs" />
     <Compile Include="Helper classes\SearchSessionExtensions.cs" />
+    <Compile Include="Helper classes\SessionTimeoutAttribute.cs" />
     <Compile Include="Helper classes\UnitConverter.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\OpenWeatherObject.cs" />
     <Compile Include="Models\SearchSession.cs" />
-    <Compile Include="Models\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,4 @@
+using SilverstoneWeatherApp.Helper_classes;
 using SilverstoneWeatherApp.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SilverstoneWeatherApp.Controllers
         public ActionResult ClearSearches()
         {
             TempData["alertMessage"] = "Search cleared";
-            Session["SearchSession"] = null;
+            SearchSessionExtensions.SetSearchSession(Session, null);
             return RedirectToAction("Index","WeatherAPI");
         }
     }

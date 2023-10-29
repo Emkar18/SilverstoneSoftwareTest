@@ -14,16 +14,4 @@ namespace SilverstoneWeatherApp.Models
             Locations = new List<Location>();
         }
     }
-    public class SessionTimeoutAttribute : ActionFilterAttribute
-    {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            if (HttpContext.Current.Session["SearchSession"] == null)
-            {
-                filterContext.Result = new RedirectResult("~/WeatherAPI/EmptySession");
-                return;
-            }
-            base.OnActionExecuting(filterContext);
-        }
-    }
 }
